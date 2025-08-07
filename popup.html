@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospectoo</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="icons/icon32.png" alt="Prospectoo" class="logo-icon">
+                <span class="logo-text">Prospectoo</span>
+            </div>
+            <div class="header-actions">
+                <button id="settingsBtn" class="icon-btn" title="Settings">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="m12 1 1.68 3.36L17 6.64l-1.68 3.36L12 13.36 8.68 10 7 6.64l1.68-3.36L12 1z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="scanner">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                Scanner
+            </button>
+            <button class="nav-tab" data-tab="similar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="7.5,4.21 12,6.81 16.5,4.21"></polyline>
+                    <polyline points="7.5,19.79 7.5,14.6 3,12"></polyline>
+                    <polyline points="16.5,19.79 16.5,14.6 21,12"></polyline>
+                </svg>
+                Similar
+            </button>
+            <button class="nav-tab" data-tab="search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7h16"></path>
+                    <path d="M10 11h4"></path>
+                    <path d="M10 15h4"></path>
+                </svg>
+                Search
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Scanner Tab -->
+            <div class="tab-content active" id="scanner-tab">
+                <div class="scan-section">
+                    <div class="current-channel" id="currentChannel" style="display: none;">
+                        <div class="channel-info">
+                            <img class="channel-avatar" id="channelAvatar" src="" alt="">
+                            <div class="channel-details">
+                                <h3 class="channel-name" id="channelName"></h3>
+                                <p class="channel-stats" id="channelStats"></p>
+                            </div>
+                        </div>
+                        <div class="channel-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Subscribers</span>
+                                <span class="metric-value" id="subscriberCount">-</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Videos</span>
+                                <span class="metric-value" id="videoCount">-</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Views</span>
+                                <span class="metric-value" id="viewCount">-</span>
+                            </div>
+                        </div>
+                        <div class="email-section" id="emailSection" style="display: none;">
+                            <div class="email-found">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span class="email-text" id="emailText"></span>
+                                <button class="copy-btn" id="copyEmailBtn">Copy</button>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="findSimilarBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                </svg>
+                                Find Similar Channels
+                            </button>
+                            <button class="btn btn-secondary" id="analyzeBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3v18h18"></path>
+                                    <path d="m19 9-5 5-4-4-3 3"></path>
+                                </svg>
+                                Deep Analysis
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="no-channel" id="noChannel">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"></polygon>
+                            </svg>
+                            <h3>Navigate to a YouTube Channel</h3>
+                            <p>Go to any YouTube channel page to start analyzing and finding similar channels</p>
+                        </div>
+                    </div>
+
+                    <div class="loading-state" id="loadingState" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing channel...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Channels Tab -->
+            <div class="tab-content" id="similar-tab">
+                <div class="search-bar">
+                    <input type="text" id="similarSearch" placeholder="Search similar channels...">
+                    <button class="search-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="filters">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="tech">Technology</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="education">Education</option>
+                        <option value="entertainment">Entertainment</option>
+                    </select>
+                    <select id="sizeFilter" class="filter-select">
+                        <option value="">All Sizes</option>
+                        <option value="nano">Nano (1K-10K)</option>
+                        <option value="micro">Micro (10K-100K)</option>
+                        <option value="mid">Mid-tier (100K-1M)</option>
+                        <option value="macro">Macro (1M+)</option>
+                    </select>
+                </div>
+
+                <div class="similar-results" id="similarResults">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                        <h3>No Similar Channels Found</h3>
+                        <p>Analyze a channel first to find similar channels</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Tab -->
+            <div class="tab-content" id="search-tab">
+                <div class="search-section">
+                    <div class="search-bar">
+                        <input type="text" id="topicSearch" placeholder="Search channels by topic, niche, or keywords...">
+                        <button class="search-btn" id="topicSearchBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="advanced-filters">
+                        <div class="filter-row">
+                            <select id="languageFilter" class="filter-select">
+                                <option value="">Any Language</option>
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                            </select>
+                            <select id="countryFilter" class="filter-select">
+                                <option value="">Any Country</option>
+                                <option value="US">United States</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="range-filters">
+                            <div class="range-filter">
+                                <label>Subscribers</label>
+                                <div class="range-inputs">
+                                    <input type="number" id="minSubs" placeholder="Min">
+                                    <span>-</span>
+                                    <input type="number" id="maxSubs" placeholder="Max">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-results" id="searchResults">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <h3>Search for Channels</h3>
+                        <p>Enter keywords or topics to find relevant YouTube channels</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="close-btn" id="closeSettings">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>YouTube API Key</label>
+                        <input type="password" id="youtubeApiKey" placeholder="Enter your YouTube API key">
+                        <small>Required for enhanced channel data</small>
+                    </div>
+                    <div class="setting-group">
+                        <label>AI Provider</label>
+                        <select id="aiProvider">
+                            <option value="openai">OpenAI GPT-4</option>
+                            <option value="anthropic">Anthropic Claude</option>
+                            <option value="local">Local Model</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>API Key</label>
+                        <input type="password" id="aiApiKey" placeholder="Enter your AI provider API key">
+                    </div>
+                    <div class="setting-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="autoScan">
+                            <span class="checkmark"></span>
+                            Auto-scan channels when visiting YouTube
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="emailNotifications">
+                            <span class="checkmark"></span>
+                            Show notifications when emails are found
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="resetSettings">Reset</button>
+                    <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
