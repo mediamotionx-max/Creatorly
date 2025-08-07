@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospectoo - YouTube Channel Finder</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <img src="icons/icon32.png" alt="Prospectoo" class="logo">
+                <h1>Prospectoo</h1>
+            </div>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Ready</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Current Channel Info -->
+            <div class="current-channel" id="currentChannel" style="display: none;">
+                <div class="channel-info">
+                    <img src="" alt="Channel Avatar" class="channel-avatar" id="channelAvatar">
+                    <div class="channel-details">
+                        <h3 class="channel-name" id="channelName"></h3>
+                        <p class="channel-stats" id="channelStats"></p>
+                        <p class="channel-email" id="channelEmail" style="display: none;"></p>
+                    </div>
+                </div>
+                <button class="scan-btn" id="scanBtn">
+                    <span class="scan-icon">🔍</span>
+                    Find Similar Channels
+                </button>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section" id="searchSection">
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" placeholder="Enter YouTube channel URL or search by topic..." class="search-input">
+                    <button class="search-btn" id="searchBtn">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+                <div class="search-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="includeEmails" checked>
+                        <span class="checkmark"></span>
+                        Include email extraction
+                    </label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="realTimeMode" checked>
+                        <span class="checkmark"></span>
+                        Real-time scanning
+                    </label>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-container" id="loadingContainer" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p class="loading-text" id="loadingText">Scanning YouTube channels...</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="loading-stats" id="loadingStats">Found 0 channels</p>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h3>Similar Channels Found</h3>
+                    <div class="results-actions">
+                        <select class="sort-dropdown" id="sortDropdown">
+                            <option value="similarity">Sort by Similarity</option>
+                            <option value="subscribers">Sort by Subscribers</option>
+                            <option value="engagement">Sort by Engagement</option>
+                            <option value="views">Sort by Views</option>
+                        </select>
+                        <button class="export-btn" id="exportBtn">Export</button>
+                    </div>
+                </div>
+                
+                <div class="results-list" id="resultsList">
+                    <!-- Results will be dynamically populated -->
+                </div>
+
+                <div class="results-footer">
+                    <button class="load-more-btn" id="loadMoreBtn">Load More Results</button>
+                </div>
+            </div>
+
+            <!-- No Channel Detected -->
+            <div class="no-channel" id="noChannel">
+                <div class="no-channel-icon">📺</div>
+                <h3>No YouTube Channel Detected</h3>
+                <p>Navigate to a YouTube channel page or search for channels using the search box above.</p>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="chrome.tabs.create({url: 'https://youtube.com'})">
+                        Go to YouTube
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="stats">
+                <span class="stat-item">
+                    <span class="stat-number" id="totalScanned">0</span>
+                    <span class="stat-label">Scanned</span>
+                </span>
+                <span class="stat-item">
+                    <span class="stat-number" id="totalEmails">0</span>
+                    <span class="stat-label">Emails Found</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/popup.js"></script>
+</body>
+</html>
