@@ -1,0 +1,494 @@
+/* Content Script Styles for Prospectoo Extension */
+
+/* Floating Action Button */
+#prospectoo-fab {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.prospectoo-fab-content svg {
+    transition: transform 0.2s ease;
+}
+
+#prospectoo-fab:hover .prospectoo-fab-content svg {
+    transform: rotate(10deg);
+}
+
+/* Email Highlighting */
+.prospectoo-email-highlight {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    color: #92400e !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+    font-weight: 500 !important;
+    border: 1px solid #f59e0b !important;
+    position: relative !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.prospectoo-email-highlight:hover {
+    background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
+}
+
+.prospectoo-email-highlight::after {
+    content: "📧";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 12px;
+    background: #f59e0b;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+/* Channel Analysis Overlay */
+.prospectoo-analysis-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.prospectoo-analysis-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.prospectoo-analysis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.prospectoo-analysis-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.prospectoo-close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: all 0.2s ease;
+}
+
+.prospectoo-close-btn:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* Quick Actions Bar */
+.prospectoo-quick-actions {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.prospectoo-quick-actions.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.prospectoo-quick-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.prospectoo-quick-action:hover {
+    background: #f9fafb;
+    color: #667eea;
+}
+
+.prospectoo-quick-action svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Channel Insights Panel */
+.prospectoo-insights-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    transition: right 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-y: auto;
+}
+
+.prospectoo-insights-panel.open {
+    right: 0;
+}
+
+.prospectoo-insights-header {
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.prospectoo-insights-body {
+    padding: 20px;
+}
+
+.prospectoo-insight-card {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid #667eea;
+}
+
+.prospectoo-insight-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.prospectoo-insight-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 4px;
+}
+
+.prospectoo-insight-description {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* Loading States */
+.prospectoo-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.prospectoo-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f4f6;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: prospectoo-spin 1s linear infinite;
+}
+
+@keyframes prospectoo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notification Toast */
+.prospectoo-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10001;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    color: #1f2937;
+    border-left: 4px solid #10b981;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.prospectoo-toast.show {
+    transform: translateX(0);
+}
+
+.prospectoo-toast.error {
+    border-left-color: #ef4444;
+}
+
+.prospectoo-toast.warning {
+    border-left-color: #f59e0b;
+}
+
+/* Channel Comparison Table */
+.prospectoo-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+}
+
+.prospectoo-comparison-table th,
+.prospectoo-comparison-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.prospectoo-comparison-table th {
+    background: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+}
+
+.prospectoo-comparison-table td {
+    color: #6b7280;
+}
+
+.prospectoo-comparison-table .highlight {
+    background: #ecfdf5;
+    color: #065f46;
+    font-weight: 500;
+}
+
+/* Similar Channels Grid */
+.prospectoo-similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.prospectoo-similar-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.prospectoo-similar-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.prospectoo-similar-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.prospectoo-similar-name {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.prospectoo-similar-stats {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.prospectoo-similarity-score {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .prospectoo-insights-panel {
+        width: 100vw;
+        right: -100vw;
+    }
+    
+    .prospectoo-quick-actions {
+        right: 10px;
+        top: 60px;
+        min-width: 180px;
+    }
+    
+    #prospectoo-fab {
+        bottom: 80px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .prospectoo-similar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .prospectoo-analysis-content {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .prospectoo-analysis-title {
+        color: #f9fafb;
+    }
+    
+    .prospectoo-close-btn {
+        background: #374151;
+        color: #9ca3af;
+    }
+    
+    .prospectoo-close-btn:hover {
+        background: #4b5563;
+        color: #d1d5db;
+    }
+    
+    .prospectoo-quick-actions {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .prospectoo-quick-action {
+        color: #d1d5db;
+    }
+    
+    .prospectoo-quick-action:hover {
+        background: #374151;
+        color: #667eea;
+    }
+    
+    .prospectoo-insights-panel {
+        background: #1f2937;
+    }
+    
+    .prospectoo-insights-body {
+        color: #f9fafb;
+    }
+    
+    .prospectoo-insight-card {
+        background: #374151;
+    }
+    
+    .prospectoo-insight-title {
+        color: #f9fafb;
+    }
+    
+    .prospectoo-insight-description {
+        color: #9ca3af;
+    }
+    
+    .prospectoo-toast {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .prospectoo-similar-card {
+        background: #374151;
+        border-color: #4b5563;
+    }
+    
+    .prospectoo-similar-name {
+        color: #f9fafb;
+    }
+    
+    .prospectoo-similar-stats {
+        color: #9ca3af;
+    }
+    
+    .prospectoo-comparison-table th {
+        background: #374151;
+        color: #f9fafb;
+    }
+    
+    .prospectoo-comparison-table td {
+        color: #d1d5db;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .prospectoo-email-highlight {
+        background: yellow !important;
+        color: black !important;
+        border: 2px solid black !important;
+    }
+    
+    #prospectoo-fab {
+        border: 2px solid white;
+    }
+    
+    .prospectoo-quick-actions {
+        border: 1px solid #000;
+    }
+}
