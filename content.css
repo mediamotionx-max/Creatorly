@@ -1,0 +1,290 @@
+/* Prospectoo Content Script Styles */
+
+/* Scanning Indicator */
+#prospectoo-scanning-indicator {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Channel Enhancement Overlay */
+.prospectoo-channel-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    animation: prospectooFadeIn 0.3s ease;
+}
+
+.prospectoo-channel-overlay:hover {
+    background: rgba(102, 126, 234, 1);
+    cursor: pointer;
+}
+
+/* Email Found Indicator */
+.prospectoo-email-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #28a745;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 8px;
+    animation: prospectooEmailPulse 2s infinite;
+}
+
+@keyframes prospectooEmailPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Similar Channel Highlight */
+.prospectoo-similar-highlight {
+    outline: 2px solid #667eea !important;
+    outline-offset: 2px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.prospectoo-similar-highlight::after {
+    content: "Similar Channel";
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    background: #667eea;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+/* Loading Spinner for Content */
+.prospectoo-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: prospectooSpin 1s linear infinite;
+}
+
+@keyframes prospectooSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notification Toast */
+.prospectoo-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    max-width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    animation: prospectooSlideInToast 0.3s ease;
+}
+
+.prospectoo-toast.success {
+    border-left: 4px solid #28a745;
+}
+
+.prospectoo-toast.error {
+    border-left: 4px solid #dc3545;
+}
+
+.prospectoo-toast.info {
+    border-left: 4px solid #667eea;
+}
+
+.prospectoo-toast-header {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.prospectoo-toast-body {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.prospectoo-toast-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prospectoo-toast-close:hover {
+    color: #666;
+}
+
+@keyframes prospectooSlideInToast {
+    from { 
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Channel Stats Enhancement */
+.prospectoo-stats-enhancement {
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.prospectoo-stats-item {
+    display: inline-block;
+    margin-right: 12px;
+    color: #667eea;
+    font-weight: 500;
+}
+
+.prospectoo-stats-value {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Similarity Score Badge */
+.prospectoo-similarity-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+.prospectoo-similarity-badge.high {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.prospectoo-similarity-badge.medium {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+}
+
+.prospectoo-similarity-badge.low {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+/* Hover Effects */
+.prospectoo-channel-overlay,
+.prospectoo-email-indicator,
+.prospectoo-similarity-badge {
+    transition: all 0.2s ease;
+}
+
+.prospectoo-channel-overlay:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .prospectoo-toast {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .prospectoo-channel-overlay {
+        top: 5px;
+        right: 5px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .prospectoo-toast {
+        background: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .prospectoo-toast-header {
+        color: #e2e8f0;
+    }
+    
+    .prospectoo-toast-body {
+        color: #a0aec0;
+    }
+    
+    .prospectoo-stats-enhancement {
+        background: rgba(102, 126, 234, 0.2);
+        border-color: rgba(102, 126, 234, 0.3);
+    }
+    
+    .prospectoo-stats-value {
+        color: #e2e8f0;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes prospectooFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes prospectooSlideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Accessibility */
+.prospectoo-channel-overlay:focus,
+.prospectoo-toast-close:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .prospectoo-toast,
+    .prospectoo-channel-overlay,
+    .prospectoo-email-indicator,
+    .prospectoo-similarity-badge {
+        display: none !important;
+    }
+}

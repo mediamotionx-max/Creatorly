@@ -1,0 +1,142 @@
+# Prospectoo Chrome Extension - Git Ignore File
+
+# Dependencies
+node_modules/
+backend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+backend/.env.local
+
+# Build Outputs
+dist/
+build/
+*.zip
+prospectoo-extension.zip
+
+# Logs
+logs/
+*.log
+backend/logs/
+backend/*.log
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+.nyc_output/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# API Keys and Secrets (extra safety)
+**/api-keys.json
+**/secrets.json
+**/*secret*
+**/*key*
+**/*token*
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Chrome Extension Specific
+# (Keep manifest.json and other essential files)
+
+# Testing
+test-results/
+playwright-report/
+test-results.xml
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# Package Files
+*.tgz
+*.tar.gz
+
+# Local Configuration
+config.local.js
+config.local.json
+
+# Documentation Build
+docs/build/
+.docusaurus/
+
+# Miscellaneous
+.sass-cache/
+connect.lock
+typings/
+.eslintcache
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# Redis dump file
+dump.rdb

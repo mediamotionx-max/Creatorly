@@ -1,0 +1,57 @@
+{
+  "name": "prospectoo-chrome-extension",
+  "version": "1.0.0",
+  "description": "AI-powered YouTube channel discovery Chrome extension with similarity matching and email extraction",
+  "main": "background.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:extension\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:extension": "echo 'Load extension in Chrome Developer Mode'",
+    "start": "cd backend && npm start",
+    "build": "npm run build:backend && npm run build:extension",
+    "build:backend": "cd backend && npm run build",
+    "build:extension": "zip -r prospectoo-extension.zip . -x 'backend/node_modules/*' '*.git*' 'node_modules/*' 'package*.json'",
+    "test": "cd backend && npm test",
+    "lint": "eslint . --ext .js,.json",
+    "lint:fix": "eslint . --ext .js,.json --fix",
+    "setup": "npm run setup:backend",
+    "setup:backend": "cd backend && npm install",
+    "clean": "rm -rf backend/node_modules && rm -f prospectoo-extension.zip",
+    "validate": "npm run lint && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prospectoo/chrome-extension.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "youtube",
+    "influencer-marketing",
+    "ai",
+    "similarity-matching",
+    "email-extraction",
+    "content-creators",
+    "marketing-tools"
+  ],
+  "author": "Prospectoo Team <team@prospectoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prospectoo/chrome-extension/issues"
+  },
+  "homepage": "https://prospectoo.com",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "eslint": "^8.55.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
+}
